@@ -1,0 +1,25 @@
+meta {
+  name: join room
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://hackclub.slack.com/api/rooms.join
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: */*
+  User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36
+  Content-Type: multipart/form-data
+  Cookie: {{vic_cookie}}
+}
+
+body:multipart-form {
+  token: {{vic_xoxc}}
+  channel_id: C01D7AHKMPF
+  regions: 
+  multidevice: false
+}

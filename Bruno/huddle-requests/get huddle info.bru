@@ -1,0 +1,15 @@
+meta {
+  name: get huddle info
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://edgeapi.slack.com/cache/:team_id/huddles/info
+  body: none
+  auth: inherit
+}
+
+params:path {
+  team_id: 
+}

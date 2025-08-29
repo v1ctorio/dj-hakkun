@@ -23,6 +23,9 @@ if (ENABLE_ASAN)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_C_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
 endif()
 
+message(STATUS "C Compiler: ${CMAKE_C_COMPILER}")
+message(STATUS "C++ Compiler: ${CMAKE_CXX_COMPILER}")
+
 add_executable(${CLI_NAME} 
         main.cc
         controllers/keypress_controller.cc
