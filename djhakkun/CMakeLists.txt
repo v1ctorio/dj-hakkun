@@ -7,9 +7,9 @@ project(AmazonChimeSignalingSdkCppCli VERSION 0.1.0
 option(ENABLE_ASAN OFF "")
 set(CMAKE_CXX_STANDARD 17)
 set(CLI_NAME my_cli)
-set(WORKSPACE_SRC "${CMAKE_CURRENT_SOURCE_DIR}/../../../.." CACHE INTERNAL "Path to the workspace containing this project and its internal dependencies")
-set(CHIME_SIGNAL_SRC "${CMAKE_CURRENT_SOURCE_DIR}/../..")
-set(VANILLA_WEBRTC_SRC "${WORKSPACE_SRC}/webrtc-build" CACHE STRING "Path to webRTC folder")
+set(WORKSPACE_SRC "${CMAKE_CURRENT_SOURCE_DIR}" CACHE INTERNAL "Path to the workspace containing this project and its internal dependencies")
+set(CHIME_SIGNAL_SRC "${CMAKE_CURRENT_SOURCE_DIR}/../amazon-chime-sdk-cpp/chime-sdk-signaling-cpp")
+set(VANILLA_WEBRTC_SRC "${WORKSPACE_SRC}/../webrtc-build" CACHE STRING "Path to webRTC folder")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
 
 if(NOT CMAKE_BUILD_TYPE)

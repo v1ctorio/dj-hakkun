@@ -12,7 +12,7 @@ export BORING_SSL_INCLUDE_DIR=$CHIME_SDK_DEMO_DIRECTORY/webrtc-build/webrtc/thir
 ```
 And the build commands
 ```sh
-cd $CHIME_SDK_DEMO_DIRECTORY # GO TO THE ROOT OF THE PROJECT
+cd $CHIME_SDK_DEMO_DIRECTORY/djhakkun # GO TO THE djhakkun dir
 cmake -S . -B build -GNinja
 cmake --build build
 ```
