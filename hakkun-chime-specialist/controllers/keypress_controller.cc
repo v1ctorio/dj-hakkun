@@ -31,6 +31,10 @@ void KeypressController::OnKeypress(char key) {
       break;
     case 'd':  // Send data message
       controller_->SendDataMessage("Hello from Signaling SDK demo!");
+      break;
+    case 'p':
+      controller_->PlayAudioFile("kendrick-tr.pcm");
+      break;
     default:
       break;
   }

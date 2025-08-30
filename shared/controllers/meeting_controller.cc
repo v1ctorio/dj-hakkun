@@ -70,15 +70,24 @@ std::unique_ptr<MeetingController> MeetingController::Create(MeetingControllerCo
   peer_connection_factory_dependencies.video_decoder_factory = webrtc::CreateBuiltinVideoDecoderFactory();
   peer_connection_factory_dependencies.audio_encoder_factory = webrtc::CreateBuiltinAudioEncoderFactory();
   peer_connection_factory_dependencies.audio_decoder_factory = webrtc::CreateBuiltinAudioDecoderFactory();
+
+  auto file_audio_capturer_unique = std::make_unique<FileAudioCapturer>("todo_example_audio_file.pcm", 48000, 2);
+  
+  FileAudioCapturer* file_audio_capturer_ptr = file_audio_capturer_unique.get();
+
   peer_connection_factory_dependencies.adm = webrtc::TestAudioDeviceModule::Create(peer_connection_factory_dependencies.task_queue_factory.get(),
-  std::make_unique<FileAudioCapturer>("todo_example_audio_file.pcm",48000,2),
+  std::move(file_audio_capturer_unique),
   webrtc::TestAudioDeviceModule::CreateDiscardRenderer(/* freq */ 48000));
 
   // To stay in the meeting, Chime's audio server requires a consistent stream of audio packets at all times.
   //   For more ways to send dummy audio see webrtc::TestAudioDeviceModule (omitted for brevity).
   dependencies.peer_connection_factory = webrtc::CreateModularPeerConnectionFactory(std::move(peer_connection_factory_dependencies));
 
-  return std::make_unique<MeetingController>(configuration, std::move(dependencies));
+  auto controller = std::make_unique<MeetingController>(configuration, std::move(dependencies));
+
+  controller->file_audio_capturer_ = file_audio_capturer_ptr;
+
+  return controller;
 }
 
 MeetingController::MeetingController(MeetingControllerConfiguration configuration,
@@ -291,4 +300,16 @@ void MeetingController::SendDataMessage(const std::string& msg) {
   message.lifetime_ms = kDataMessageLifetimeMs;
   message.data = msg;
   signaling_client_->SendDataMessage(message);
+}
+
+
+void MeetingController::PlayAudioFile(const std::string& filename) {
+  RTC_LOG(LS_INFO) << "Playing new audio file " << filename;
+
+  if (file_audio_capturer_) {
+    file_audio_capturer_->SetFile(filename);
+  } else {
+    RTC_LOG(LS_ERROR) << "Couldn't find the audio capturer";
+  }
+
 }

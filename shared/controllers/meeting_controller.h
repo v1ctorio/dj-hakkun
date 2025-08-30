@@ -23,6 +23,8 @@
 #include <string>
 #include <map>
 
+#include "utils/file_audio_capturer.h"
+
 using namespace chime;
 
 class MeetingController {
@@ -37,6 +39,10 @@ class MeetingController {
   void Stop();
 
   void StartLocalVideo();
+
+  void PlayAudioFile(const std::string& path);
+
+
   void SendDataMessage(const std::string& msg);
 
   rtc::scoped_refptr<webrtc::PeerConnectionInterface> peer_connection_;
@@ -53,6 +59,8 @@ class MeetingController {
   void SetExternalVideoSource(rtc::scoped_refptr<webrtc::VideoTrackSourceInterface> track,
                               webrtc::VideoTrackInterface::ContentHint content_hint);
   std::map<std::string, RemoteVideoSourceInfo> video_sources_to_subscribe_;
+
+  FileAudioCapturer* file_audio_capturer_ = nullptr;
 
  private:
   // Helpers
