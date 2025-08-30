@@ -71,7 +71,7 @@ std::unique_ptr<MeetingController> MeetingController::Create(MeetingControllerCo
   peer_connection_factory_dependencies.audio_encoder_factory = webrtc::CreateBuiltinAudioEncoderFactory();
   peer_connection_factory_dependencies.audio_decoder_factory = webrtc::CreateBuiltinAudioDecoderFactory();
 
-  auto file_audio_capturer_unique = std::make_unique<FileAudioCapturer>("todo_example_audio_file.pcm", 48000, 2);
+  auto file_audio_capturer_unique = std::make_unique<FileAudioCapturer>("", 48000, 2);
   
   FileAudioCapturer* file_audio_capturer_ptr = file_audio_capturer_unique.get();
 

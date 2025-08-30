@@ -19,4 +19,5 @@ class FileAudioCapturer : public webrtc::TestAudioDeviceModule::Capturer {
   int frame_size_;
   std::ifstream file_;
   std::mutex file_mutex_;
+  bool silent_;
 };
