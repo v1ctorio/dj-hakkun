@@ -55,6 +55,7 @@ bool KeypressController::OnCommand(const std::string& line){
     std::cout << "[HAKKUN] stopped" << std::endl;
     return false;
   }
+  return false;
 }
 
 
