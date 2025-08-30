@@ -30,6 +30,8 @@ add_executable(${CLI_NAME}
         main.cc
         controllers/keypress_controller.cc
         controllers/keypress_controller.h
+        ../shared/utils/file_audio_capturer.cc
+        ../shared/utils/file_audio_capturer.h
         ../shared/controllers/meeting_controller.h
         ../shared/controllers/meeting_controller.cc
         ../shared/controllers/meeting_controller_dependencies.h
@@ -54,6 +56,7 @@ add_executable(${CLI_NAME}
         ../shared/video/fake_video_source.h
         ../shared/video/write_to_file_yuv_video_sink.cc
         ../shared/video/write_to_file_yuv_video_sink.h
+        
         )
 
 include(FetchContent)

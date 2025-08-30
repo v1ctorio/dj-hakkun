@@ -25,32 +25,36 @@
 
 using namespace chime;
 
-std::optional<MeetingSessionConfiguration> createMeetingConfiguration(const cxxopts::ParseResult& result) {
-    auto attendee_id = result["attendee_id"].as<std::string>();
-    auto external_user_id = result["external_user_id"].as<std::string>();
-    auto join_token = result["join_token"].as<std::string>();
-    auto audio_host_url = result["audio_host_url"].as<std::string>();
-    auto signaling_url = result["signaling_url"].as<std::string>();
-    auto meeting_id = result["meeting_id"].as<std::string>();
-    auto external_meeting_id = result["external_meeting_id"].as<std::string>();
+std::optional<MeetingSessionConfiguration> createMeetingConfiguration(const cxxopts::ParseResult &result)
+{
+  auto attendee_id = result["attendee_id"].as<std::string>();
+  auto external_user_id = result["external_user_id"].as<std::string>();
+  auto join_token = result["join_token"].as<std::string>();
+  auto audio_host_url = result["audio_host_url"].as<std::string>();
+  auto signaling_url = result["signaling_url"].as<std::string>();
+  auto meeting_id = result["meeting_id"].as<std::string>();
+  auto external_meeting_id = result["external_meeting_id"].as<std::string>();
 
-    if (attendee_id.empty() || external_user_id.empty() || join_token.empty() ||
-        audio_host_url.empty() || signaling_url.empty() || meeting_id.empty() ||
-        external_meeting_id.empty()) {
-      return std::nullopt;
-    }
+  if (attendee_id.empty() || external_user_id.empty() || join_token.empty() ||
+      audio_host_url.empty() || signaling_url.empty() || meeting_id.empty() ||
+      external_meeting_id.empty())
+  {
+    return std::nullopt;
+  }
 
-    MeetingSessionCredentials credentials{attendee_id, external_user_id, join_token};
-    MeetingSessionURLs urls{audio_host_url, signaling_url};
-    MeetingSessionConfiguration configuration{meeting_id, external_meeting_id, std::move(credentials), std::move(urls)};
-    
-    return configuration;
+  MeetingSessionCredentials credentials{attendee_id, external_user_id, join_token};
+  MeetingSessionURLs urls{audio_host_url, signaling_url};
+  MeetingSessionConfiguration configuration{meeting_id, external_meeting_id, std::move(credentials), std::move(urls)};
+
+  return configuration;
 }
 
-int main(int argc, char* argv[]) {
-  cxxopts::Options options("my_cli", "Running Cli demo application");
+int main(int argc, char *argv[])
+{
+  cxxopts::Options options("hakkun-chime-specialist", "Chime specialist ");
   options.allow_unrecognised_options();
-  try {
+  try
+  {
     options.add_options()("l,log_level", "Log level [verbose, debug, info, warning, error, off]",
                           cxxopts::value<std::string>()->default_value("info"))(
         "m,meeting_id", "Meeting ID [JoinInfo.Meeting.MeetingId]", cxxopts::value<std::string>()->default_value(""))(
@@ -66,7 +70,9 @@ int main(int argc, char* argv[]) {
         cxxopts::value<std::string>()->default_value(""))("j,join_token",
                                                           "Join token [JoinInfo.Attendee.Attendee.JoinToken]",
                                                           cxxopts::value<std::string>()->default_value(""));
-  } catch (const std::exception& e) {
+  }
+  catch (const std::exception &e)
+  {
     std::cout << e.what() << std::endl;
     return 0;
   }
@@ -82,15 +88,16 @@ int main(int argc, char* argv[]) {
   std::cout << "Current Log Level: " << result["log_level"].as<std::string>() << std::endl;
 
   std::optional<MeetingSessionConfiguration> meeting_configuration = createMeetingConfiguration(result);
-  if (!meeting_configuration) {
-      std::cout << "Could not create meeting configuration. You may be missing a value" << std::endl;
-      return 0;
+  if (!meeting_configuration)
+  {
+    std::cout << "Could not create meeting configuration. You may be missing a value" << std::endl;
+    return 0;
   }
 
   SignalingClientConfiguration signaling_configuration;
   signaling_configuration.meeting_configuration = *meeting_configuration;
 
-  DefaultSignalingDependencies signaling_dependencies {};
+  DefaultSignalingDependencies signaling_dependencies{};
   auto client =
       DefaultSignalingClientFactory::CreateSignalingClient(signaling_configuration, std::move(signaling_dependencies));
 
@@ -98,8 +105,7 @@ int main(int argc, char* argv[]) {
   configuration.meeting_configuration = *meeting_configuration;
   configuration.log_level = result["log_level"].as<std::string>();
   auto session_description_observer = std::make_unique<SessionDescriptionObserver>();
-  std::shared_ptr<MeetingController> controller
-      = MeetingController::Create(configuration, std::move(client), session_description_observer.get());
+  std::shared_ptr<MeetingController> controller = MeetingController::Create(configuration, std::move(client), session_description_observer.get());
 
   session_description_observer->controller_ = controller.get();
   auto peer_connection_observer = std::make_unique<PeerConnectionObserver>(controller.get());

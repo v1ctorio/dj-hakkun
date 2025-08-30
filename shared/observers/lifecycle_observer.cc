@@ -53,6 +53,7 @@ void LifecycleObserver::OnSignalingClientStarted(const SignalingClientStartInfo&
     controller_->peer_connection_ = result.MoveValue();
   }
 
+
   const char kAudioLabel[] = "external_audio";
   auto audio_source = controller_->peer_connection_factory_->CreateAudioSource(cricket::AudioOptions());
   auto audio_track = controller_->peer_connection_factory_->CreateAudioTrack(kAudioLabel, audio_source.get());

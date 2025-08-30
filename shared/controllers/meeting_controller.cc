@@ -39,6 +39,9 @@
 #include <regex>
 #include <string>
 
+#include "utils/file_audio_capturer.h"
+
+
 using namespace chime;
 
 std::unique_ptr<MeetingController> MeetingController::Create(MeetingControllerConfiguration configuration,
@@ -68,8 +71,8 @@ std::unique_ptr<MeetingController> MeetingController::Create(MeetingControllerCo
   peer_connection_factory_dependencies.audio_encoder_factory = webrtc::CreateBuiltinAudioEncoderFactory();
   peer_connection_factory_dependencies.audio_decoder_factory = webrtc::CreateBuiltinAudioDecoderFactory();
   peer_connection_factory_dependencies.adm = webrtc::TestAudioDeviceModule::Create(peer_connection_factory_dependencies.task_queue_factory.get(),
-      webrtc::TestAudioDeviceModule::CreatePulsedNoiseCapturer(/* amplitude */ 32000, /* freq */ 48000),
-      webrtc::TestAudioDeviceModule::CreateDiscardRenderer(/* freq */ 48000));
+  std::make_unique<FileAudioCapturer>("todo_example_audio_file.pcm",48000,2),
+  webrtc::TestAudioDeviceModule::CreateDiscardRenderer(/* freq */ 48000));
 
   // To stay in the meeting, Chime's audio server requires a consistent stream of audio packets at all times.
   //   For more ways to send dummy audio see webrtc::TestAudioDeviceModule (omitted for brevity).
