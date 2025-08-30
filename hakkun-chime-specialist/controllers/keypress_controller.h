@@ -12,7 +12,6 @@ class KeypressController final {
   int Exec();
 
  private:
-  void OnKeypress(char key);
   bool OnCommand(const std::string& line);
 
   std::shared_ptr<MeetingController> controller_;

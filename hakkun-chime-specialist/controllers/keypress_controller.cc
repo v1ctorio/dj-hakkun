@@ -45,8 +45,13 @@ bool KeypressController::OnCommand(const std::string& line){
   }
 
   if (command == "play") {
-    controller_->PlayAudioFile(args[1]);
-    std::cout << "[HAKKUN] playing" << std::endl;
+    if (args.size() > 1) {
+
+      controller_->PlayAudioFile(args[1]);
+      std::cout << "[HAKKUN] playing" << std::endl;
+    } else {
+      std::cout << "[HAKKUN] missing file argument" << std::endl;
+    }
     return false;
   }
 
@@ -58,25 +63,3 @@ bool KeypressController::OnCommand(const std::string& line){
   return false;
 }
 
-
-void KeypressController::OnKeypress(char key) {
-  std::cout << "Keypress received: " << std::string(1, key) << std::endl;
-  if (!controller_) return;
-
-  switch (key) {
-    case 'q':  // Quit
-      controller_->Stop();
-      break;
-    case 'c':  // Toggle capturer start/stop
-      controller_->StartLocalVideo();
-      break;
-    case 'd':  // Send data message
-      controller_->SendDataMessage("Hello from Signaling SDK demo!");
-      break;
-    case 'p':
-      controller_->PlayAudioFile("kendrick-tr.pcm");
-      break;
-    default:
-      break;
-  }
-}

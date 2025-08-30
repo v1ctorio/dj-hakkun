@@ -29,12 +29,14 @@ def start_proc(path,attendee_id,audio_host_url,external_meeting_id,external_user
         command,
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
-        text=True
+        stderr=subprocess.PIPE,
+        text=True,
+        bufsize=1
     )
     return p
 
 def play_chime(pro: subprocess.Popen):
-    filename = "/home/vic/Dev/dj-hakkun/hakkun-slack-expert/colg-ttc.pcm"
+    filename = "/home/vic/Downloads/colg-ttc.pcm"
     pro.stdin.write(f"play {filename}\n")
     pro.stdin.flush()
 

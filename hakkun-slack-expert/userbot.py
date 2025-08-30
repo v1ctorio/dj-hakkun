@@ -32,7 +32,6 @@ def join_huddle(channel_id,Cookie,XOXC,workspace)->HakkunChimeParams:
     j = req.json()
     if j["ok"] is False:
         raise Exception("Invalid auth")
-    print(j)
     call = j["call"]
     free_willy = call["free_willy"]
     meeting = free_willy["meeting"]
