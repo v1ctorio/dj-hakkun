@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.17)
 
-project(AmazonChimeSignalingSdkCppCli VERSION 0.1.0
-        DESCRIPTION "Cli for Amazon Chime's C++ Signaling SDK"
+project(HakkunChimeSpecialist VERSION 0.1.0
+        DESCRIPTION "Cli to play raw audio files in Slack huddles using Amazon Chime's C++ Signaling SDK"
         LANGUAGES C CXX)
 
 option(ENABLE_ASAN OFF "")
 set(CMAKE_CXX_STANDARD 17)
-set(CLI_NAME my_cli)
+set(CLI_NAME hakkun-chime-specialist)
 set(WORKSPACE_SRC "${CMAKE_CURRENT_SOURCE_DIR}" CACHE INTERNAL "Path to the workspace containing this project and its internal dependencies")
 set(CHIME_SIGNAL_SRC "${CMAKE_CURRENT_SOURCE_DIR}/../amazon-chime-sdk-cpp/chime-sdk-signaling-cpp")
 set(VANILLA_WEBRTC_SRC "${WORKSPACE_SRC}/../webrtc-build" CACHE STRING "Path to webRTC folder")
