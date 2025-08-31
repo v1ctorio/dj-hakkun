@@ -40,6 +40,7 @@ def join(ack, respond, command):
         signaling_url=join_data.get("signaling_urls"),
         log_level="INFO",
         )
+    print(f"process alive: {proc.poll()}")
     if join_data["attendee_id"] is not None:
         respond("Successfully joined the channel huddle")
     
