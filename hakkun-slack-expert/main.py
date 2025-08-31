@@ -4,8 +4,6 @@ from dotenv import load_dotenv
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 import chime
-import slack_bolt
-import subprocess
 import userbot
 
 
@@ -42,6 +40,8 @@ def join(ack, respond, command):
         signaling_url=join_data.get("signaling_urls"),
         log_level="INFO",
         )
+    if join_data["attendee_id"] is not None:
+        respond("Successfully joined the channel huddle")
     
 @app.command("/djleave")
 def join(ack, respond, command):

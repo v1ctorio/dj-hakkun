@@ -1,6 +1,6 @@
 import subprocess
 from typing import TypedDict
-
+import os
 
 class HakkunChimeParams(TypedDict):
     attendee_id: str
@@ -25,13 +25,19 @@ def start_proc(path,attendee_id,audio_host_url,external_meeting_id,external_user
         '--signaling_url', signaling_url
     ]
     print(" ".join(command))
+    logfilepath = os.getenv("STDERR_HCS_FILE")
+    errfile = None
+    if logfilepath is not None:
+        errfile = open(logfilepath,'+a')
+
     p = subprocess.Popen(
         command,
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+#        stderr=errfile,
         text=True,
-        bufsize=1
+        bufsize=1,
+        shell=True
     )
     return p
 

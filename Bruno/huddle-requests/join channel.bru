@@ -1,0 +1,25 @@
+meta {
+  name: join channel
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://hackclub.slack.com/api/conversations.join
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: */*
+  User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36
+  Content-Type: multipart/form-data
+  Cookie: {{vic_cookie}}
+}
+
+body:multipart-form {
+  token: {{vic_xoxc}}
+  channel: C09B42CLL72
+  auto_mute: false
+  request_in_background: true
+}

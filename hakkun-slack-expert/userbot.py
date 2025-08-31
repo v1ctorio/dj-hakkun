@@ -31,7 +31,7 @@ def join_huddle(channel_id,Cookie,XOXC,workspace)->HakkunChimeParams:
     )
     j = req.json()
     if j["ok"] is False:
-        raise Exception("Invalid auth")
+        raise Exception(j["error"])
     call = j["call"]
     free_willy = call["free_willy"]
     meeting = free_willy["meeting"]
@@ -47,4 +47,30 @@ def join_huddle(channel_id,Cookie,XOXC,workspace)->HakkunChimeParams:
         "signaling_urls": meeting["MediaPlacement"]["SignalingUrl"]
     }
     return params
+
+def join_conversation(channel_id,Cookie,XOXC,workspace)->HakkunChimeParams:
+
+    mp_encoder = MultipartEncoder(
+        fields={
+            "token": XOXC,
+            "channel": channel_id,
+            "auto_mute": "false",
+            "request_in_background": "true"
+        }
+    )
+    req = requests.post(
+        url=f"https://{workspace}.slack.com/api/conversations.join",
+        headers={
+            "Accept": "*/*",
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+            "Content-Type": mp_encoder.content_type,
+            "Cookie": Cookie
+        },
+        data=mp_encoder
+    )
+    j = req.json()
+    if j["error"] == "invalid_auth":
+        raise Exception("Invalid auth")
+    
+    return j["ok"]
     
