@@ -1,4 +1,3 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef CHIME_FAKE_VIDEO_SOURCE_H_
 #define CHIME_FAKE_VIDEO_SOURCE_H_

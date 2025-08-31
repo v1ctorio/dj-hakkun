@@ -1,4 +1,3 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef SESSION_DESCRIPTION_OBSERVER_H_
 #define SESSION_DESCRIPTION_OBSERVER_H_

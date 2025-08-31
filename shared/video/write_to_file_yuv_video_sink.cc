@@ -1,4 +1,3 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #include "write_to_file_yuv_video_sink.h"
 

@@ -1,4 +1,3 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #include "peer_connection_observer.h"
 

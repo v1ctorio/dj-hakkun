@@ -1,4 +1,3 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef PEER_CONNECTION_OBSERVER_H_
 #define PEER_CONNECTION_OBSERVER_H_

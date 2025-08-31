@@ -1,4 +1,3 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #include "lifecycle_observer.h"
 

@@ -1,4 +1,3 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef CONTROLLER_CONFIGURATION_H_
 #define CONTROLLER_CONFIGURATION_H_

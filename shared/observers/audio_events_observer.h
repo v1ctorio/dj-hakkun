@@ -1,4 +1,3 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef AUDIO_EVENTS_OBSERVER_H_
 #define AUDIO_EVENTS_OBSERVER_H_

@@ -1,4 +1,3 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef LOG_SINK_H_
 #define LOG_SINK_H_

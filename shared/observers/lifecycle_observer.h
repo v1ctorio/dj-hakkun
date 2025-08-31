@@ -1,4 +1,3 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef LIFECYCLE_OBSERVER_H_
 #define LIFECYCLE_OBSERVER_H_

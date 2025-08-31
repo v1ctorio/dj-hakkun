@@ -1,4 +1,3 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef VIDEO_EVENTS_OBSERVER_H_
 #define VIDEO_EVENTS_OBSERVER_H_

@@ -1,4 +1,3 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef PRESENCE_EVENTS_OBSERVER_H_
 #define PRESENCE_EVENTS_OBSERVER_H_

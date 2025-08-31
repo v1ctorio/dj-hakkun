@@ -1,4 +1,3 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef CHIME_WRITE_TO_FILE_YUV_VIDEO_SINK_H_
 #define CHIME_WRITE_TO_FILE_YUV_VIDEO_SINK_H_

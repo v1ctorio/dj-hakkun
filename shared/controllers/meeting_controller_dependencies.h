@@ -1,4 +1,3 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef CONTROLLER_DEPENDENCIES_H_
 #define CONTROLLER_DEPENDENCIES_H_

@@ -1,4 +1,3 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef DATA_MESSAGE_OBSERVER_H_
 #define DATA_MESSAGE_OBSERVER_H_
