@@ -1,4 +1,3 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 #ifndef MEETING_CONTROLLER_H_
 #define MEETING_CONTROLLER_H_

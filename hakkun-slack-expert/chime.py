@@ -42,8 +42,8 @@ def start_proc(path,attendee_id,audio_host_url,external_meeting_id,external_user
     sleep(1)
     return p
 
-def play_chime(pro: subprocess.Popen):
-    filename = "/home/vic/Dev/dj-hakkun/hakkun-slack-expert/colg-ttc.pcm"
+def play_chime(pro: subprocess.Popen, p: str):
+    filename = os.path.abspath(path=p)#"/home/vic/Dev/dj-hakkun/hakkun-slack-expert/colg-ttc.pcm"
     stdin_cmd = "play {}\n".format(filename)
     print(f"Sending to stdin: ´{stdin_cmd}´")
     pro.stdin.write(stdin_cmd)

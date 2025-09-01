@@ -109,4 +109,5 @@ class UserbotInfo(TypedDict):
 def current_milli_time():
     return round(time() * 1000)
 
-def send_message(channel_id, Cookie, XOXC)
+def send_message(channel_id, Cookie, XOXC):
+    pass

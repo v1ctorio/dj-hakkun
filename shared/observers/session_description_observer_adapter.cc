@@ -1,5 +1,4 @@
-//  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
+s
 #include "session_description_observer_adapter.h"
 
 CreateSessionDescriptionObserver::CreateSessionDescriptionObserver(CreateSessionDescriptionObserverAdapter* adapter)

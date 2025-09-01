@@ -2,11 +2,10 @@ import os
 from dotenv import load_dotenv
 
 from slack_bolt import App
+from urllib.parse import urlparse
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 import chime
 import userbot
-
-
 proc = None
 
 load_dotenv()
@@ -59,11 +58,20 @@ def join(ack, respond, command):
 def play(ack, respond, command):
     global proc
     ack()
+    url = urlparse(command["text"])
+    if url is None:
+        respond("Invalid url provided")
+        return
+    if url.hostname != "youtube.com":
+        respond("Url must be from youtube")
+        return
+
     if proc is None:
         respond("Can't play right now since I'm not connected to any channel. Use /djoin first.")
         return
     
-    chime.play_chime(proc)
+    file_path = ""
+    chime.play_chime(proc, )
     respond("Started playing audio")
     
 def main():
